@@ -6,7 +6,7 @@ import { ExternalLink, Github } from "lucide-react"
 const projects = [
   {
     id: 1,
-    title: "AOI PCB Classifier for Lear Corp",
+    title: "ICT Defect Management for Lear Corp",
     category: "AI/ML • Industrial Automation",
     year: "2024",
     description:
@@ -14,6 +14,7 @@ const projects = [
     technologies: ["Python", "Computer Vision", "Machine Learning", "Image Processing"],
     link: "#", // Will be updated when you provide links
     github: "https://github.com/TheSilent01",
+    githubLink: "https://github.com/TheSilent01/ICT-management"
   },
   {
     id: 2,
@@ -25,20 +26,10 @@ const projects = [
     technologies: ["Python", "AI Algorithms", "Game Theory", "Heuristics"],
     link: "#",
     github: "https://github.com/TheSilent01",
+    githubLink: "https://github.com/TheSilent01/Parcheesi-AI"
   },
   {
     id: 3,
-    title: "Home Lab with Headscale + Tailscale",
-    category: "Networking • Infrastructure",
-    year: "2024",
-    description:
-      "Built a secure, scalable home lab on Ubuntu with self-hosted Headscale for private VPN access. Configured network security, remote access, and synchronization services.",
-    technologies: ["Ubuntu", "Headscale", "Tailscale", "VPN", "Network Security"],
-    link: "#",
-    github: "https://github.com/TheSilent01",
-  },
-  {
-    id: 4,
     title: "Digital Maze Quiz - Quantum Rift",
     category: "Web Development • Interactive",
     year: "2024",
@@ -47,20 +38,21 @@ const projects = [
     technologies: ["JavaScript", "HTML/CSS", "Interactive Design", "Physics"],
     link: "#",
     github: "https://github.com/TheSilent01",
+    githubLink: "https://github.com/TheSilent01/QuantumRift"
+  },
+  {
+    id: 4,
+    title: "Optimal Blackjack Strategy Trainer",
+    category: "Game Development • Algorithms",
+    year: "2023",
+    description: "An interactive tool that helps users master optimal blackjack strategies through simulated gameplay and real-time feedback on decision-making.",
+    technologies: ["JavaScript", "HTML/CSS", "Interactive Design", "Physics"],
+    link: "#",
+    github: "https://github.com/TheSilent01",
+    githubLink: "https://github.com/TheSilent01/blackjack"
   },
   {
     id: 5,
-    title: "LaTeX Document Templates",
-    category: "Documentation • Education",
-    year: "2024",
-    description:
-      "Designed and implemented LaTeX templates for structured educational documents and exercise corrections in programming. Created professional PDF documents with custom styling.",
-    technologies: ["LaTeX", "Document Design", "Typography", "Template Design"],
-    link: "#",
-    github: "https://github.com/TheSilent01",
-  },
-  {
-    id: 6,
     title: "Personal Finance Management System",
     category: "Productivity • Personal Tools",
     year: "2024",
@@ -69,6 +61,18 @@ const projects = [
     technologies: ["Obsidian", "Markdown", "Personal Productivity", "Data Organization"],
     link: "#",
     github: "https://github.com/TheSilent01",
+    githubLink: "https://github.com/TheSilent01/FinanceHub"
+  },
+  {
+    id: 6,
+    title: "Parcheesi AI Player",
+    category: "AI • Game Development",
+    year: "2024",
+    description: "Developed an AI player for the Parcheesi board game using advanced algorithms and machine learning techniques to compete against human players.",
+    technologies: ["Python", "Machine Learning", "Game Theory", "AI Algorithms"],
+    link: "#",
+    github: "https://github.com/TheSilent01/Parcheesi",
+    githubLink: "https://github.com/TheSilent01/Parcheesi"
   },
 ]
 
@@ -158,6 +162,17 @@ export function ProjectsSection() {
                   >
                     <Github className="h-5 w-5" />
                   </a>
+                  <div className="flex items-center gap-4">
+                    <a
+                      href={project.githubLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 text-foreground/60 hover:text-foreground/80 transition-colors duration-300"
+                    >
+                      <Github className="h-4 w-4" />
+                      <span className="text-sm font-medium">GitHub</span>
+                    </a>
+                  </div>
                 </div>
               </div>
 

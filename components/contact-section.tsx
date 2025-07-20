@@ -8,7 +8,7 @@ export function ContactSection() {
   const [emailCopied, setEmailCopied] = useState(false)
 
   const copyEmail = () => {
-    navigator.clipboard.writeText("yassine.elaidous@ensam-meknes.ac.ma") // Update with your actual email
+    navigator.clipboard.writeText("yassine.elaidous@ensam.ac.ma") // Update with your actual email
     setEmailCopied(true)
     setTimeout(() => setEmailCopied(false), 2000)
   }
@@ -88,7 +88,7 @@ export function ContactSection() {
               <div className="flex items-center gap-4 p-4 bg-foreground/5 rounded-lg border border-foreground/10">
                 <Mail className="h-5 w-5 text-foreground-secondary" />
                 <div className="flex-1 flex items-center justify-between">
-                  <span className="contact-text text-foreground">yassine.elaidous@ensam-meknes.ac.ma</span>
+                  <span className="contact-text text-foreground">yassine.elaidous@ensam.ac.ma</span>
                   <button
                     onClick={copyEmail}
                     className="text-foreground/40 hover:text-foreground/80 transition-colors duration-300"
