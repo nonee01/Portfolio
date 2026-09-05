@@ -1,89 +1,45 @@
 import type { Config } from "tailwindcss"
+
 const config: Config = {
   darkMode: ["class"],
-  content: [
-    "app/**/*.{ts,tsx}",
-    "components/**/*.{ts,tsx}",
-    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
-    "*.{js,ts,jsx,tsx,mdx}",
-  ],
+  content: ["app/**/*.{ts,tsx}", "components/**/*.{ts,tsx}", "lib/**/*.{ts,tsx}"],
   theme: {
     extend: {
       colors: {
-        border: "hsl(var(--border))",
-        input: "hsl(var(--input))",
-        ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
-        primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
+        background: "var(--background)",
+        foreground: {
+          DEFAULT: "var(--foreground)",
+          secondary: "var(--foreground-secondary)",
+          tertiary: "var(--foreground-tertiary)",
         },
-        secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
+        border: "var(--border)",
+        tn: {
+          bg: "#1a1b26",
+          bgDark: "#16161e",
+          highlight: "#292e42",
+          gutter: "#3b4261",
+          terminal: "#414868",
+          comment: "#565f89",
+          fg: "#c0caf5",
+          fgDark: "#a9b1d6",
+          blue: "#7aa2f7",
+          cyan: "#7dcfff",
+          magenta: "#bb9af7",
+          purple: "#9d7cd8",
+          orange: "#ff9e64",
+          yellow: "#e0af68",
+          green: "#9ece6a",
+          teal: "#73daca",
+          red: "#f7768e",
         },
-        destructive: {
-          DEFAULT: "hsl(var(--destructive))",
-          foreground: "hsl(var(--destructive-foreground))",
-        },
-        muted: {
-          DEFAULT: "hsl(var(--muted))",
-          foreground: "hsl(var(--muted-foreground))",
-        },
-        accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
-        },
-        popover: {
-          DEFAULT: "hsl(var(--popover))",
-          foreground: "hsl(var(--popover-foreground))",
-        },
-        card: {
-          DEFAULT: "hsl(var(--card))",
-          foreground: "hsl(var(--card-foreground))",
-        },
-      },
-      borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
       },
       fontFamily: {
-        sans: ["Geist", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "system-ui", "sans-serif"],
-        geist: ["Geist", "sans-serif"],
-      },
-      fontWeight: {
-        light: "300",
-        normal: "400",
-        medium: "500",
-        semibold: "600",
-        bold: "700",
-      },
-      keyframes: {
-        fadeIn: {
-          "0%": { opacity: "0" },
-          "100%": { opacity: "1" },
-        },
-        slideUp: {
-          "0%": { transform: "translateY(20px)", opacity: "0" },
-          "100%": { transform: "translateY(0)", opacity: "1" },
-        },
-        slideInFromLeft: {
-          "0%": { transform: "translateX(-20px)", opacity: "0" },
-          "100%": { transform: "translateX(0)", opacity: "1" },
-        },
-      },
-      animation: {
-        fadeIn: "fadeIn 0.5s ease-in-out",
-        slideUp: "slideUp 0.5s ease-in-out",
-        slideInFromLeft: "slideInFromLeft 0.5s ease-in-out",
+        sans: ["var(--font-geist-sans)", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "system-ui", "sans-serif"],
+        mono: ["var(--font-geist-mono)", "ui-monospace", "SFMono-Regular", "JetBrains Mono", "Fira Code", "Menlo", "monospace"],
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [],
 }
 
 export default config

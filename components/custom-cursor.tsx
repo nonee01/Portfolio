@@ -1,115 +1,44 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { motion } from "framer-motion"
+import { motion, useMotionValue, useSpring } from "framer-motion"
 
 export function CustomCursor() {
-  const [position, setPosition] = useState({ x: 0, y: 0 })
-  const [clicked, setClicked] = useState(false)
-  const [linkHovered, setLinkHovered] = useState(false)
-  const [hidden, setHidden] = useState(false)
-  const [isMobile, setIsMobile] = useState(true) // Default to true to prevent flash on mobile
+  const [enabled, setEnabled] = useState(false)
+  const [hovering, setHovering] = useState(false)
+
+  const x = useMotionValue(-100)
+  const y = useMotionValue(-100)
+  const ringX = useSpring(x, { stiffness: 260, damping: 26, mass: 0.4 })
+  const ringY = useSpring(y, { stiffness: 260, damping: 26, mass: 0.4 })
 
   useEffect(() => {
-    // Check if we're on mobile
-    const checkIfMobile = () => {
-      setIsMobile(window.innerWidth < 768)
+    // Only for real pointers: a touch screen has no cursor to replace.
+    if (!window.matchMedia("(pointer: fine)").matches) return
+    setEnabled(true)
+
+    const move = (event: PointerEvent) => {
+      x.set(event.clientX)
+      y.set(event.clientY)
+
+      const target = event.target as HTMLElement | null
+      setHovering(Boolean(target?.closest("a, button, [role='button']")))
     }
 
-    // Initial check
-    checkIfMobile()
+    window.addEventListener("pointermove", move, { passive: true })
+    return () => window.removeEventListener("pointermove", move)
+  }, [x, y])
 
-    // Add resize listener
-    window.addEventListener("resize", checkIfMobile)
-
-    const addEventListeners = () => {
-      document.addEventListener("mousemove", onMouseMove)
-      document.addEventListener("mouseenter", onMouseEnter)
-      document.addEventListener("mouseleave", onMouseLeave)
-      document.addEventListener("mousedown", onMouseDown)
-      document.addEventListener("mouseup", onMouseUp)
-    }
-
-    const removeEventListeners = () => {
-      document.removeEventListener("mousemove", onMouseMove)
-      document.removeEventListener("mouseenter", onMouseEnter)
-      document.removeEventListener("mouseleave", onMouseLeave)
-      document.removeEventListener("mousedown", onMouseDown)
-      document.removeEventListener("mouseup", onMouseUp)
-    }
-
-    const onMouseMove = (e: MouseEvent) => {
-      setPosition({ x: e.clientX, y: e.clientY })
-    }
-
-    const onMouseEnter = () => {
-      setHidden(false)
-    }
-
-    const onMouseLeave = () => {
-      setHidden(true)
-    }
-
-    const onMouseDown = () => {
-      setClicked(true)
-    }
-
-    const onMouseUp = () => {
-      setClicked(false)
-    }
-
-    const handleLinkHoverEvents = () => {
-      document.querySelectorAll("a, button, input, textarea").forEach((el) => {
-        el.addEventListener("mouseenter", () => setLinkHovered(true))
-        el.addEventListener("mouseleave", () => setLinkHovered(false))
-      })
-    }
-
-    // Only add event listeners if not on mobile
-    if (!isMobile) {
-      addEventListeners()
-      handleLinkHoverEvents()
-    }
-
-    return () => {
-      removeEventListeners()
-      window.removeEventListener("resize", checkIfMobile)
-    }
-  }, [isMobile])
-
-  if (isMobile) return null
+  if (!enabled) return null
 
   return (
     <>
-      <motion.div
-        className="cursor-dot"
-        animate={{
-          x: position.x - 4,
-          y: position.y - 4,
-          scale: clicked ? 0.5 : linkHovered ? 2 : 1,
-          opacity: hidden ? 0 : 1,
-        }}
-        transition={{
-          type: "spring",
-          mass: 0.2,
-          stiffness: 800,
-          damping: 30,
-        }}
-      />
+      <motion.div className="cursor-dot" style={{ x, y, translateX: "-50%", translateY: "-50%" }} />
       <motion.div
         className="cursor-outline"
-        animate={{
-          x: position.x - 16,
-          y: position.y - 16,
-          scale: clicked ? 0.5 : linkHovered ? 1.5 : 1,
-          opacity: hidden ? 0 : 1,
-        }}
-        transition={{
-          type: "spring",
-          mass: 0.5,
-          stiffness: 200,
-          damping: 30,
-        }}
+        style={{ x: ringX, y: ringY, translateX: "-50%", translateY: "-50%" }}
+        animate={{ scale: hovering ? 1.6 : 1, opacity: hovering ? 1 : 0.6 }}
+        transition={{ duration: 0.25 }}
       />
     </>
   )

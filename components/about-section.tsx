@@ -1,136 +1,64 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Building, Calendar, MapPin } from "lucide-react"
+import { about } from "@/lib/content"
+
+const ease = [0.25, 0.1, 0.25, 1] as const
+
+const item = {
+  hidden: { opacity: 0, y: 26 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease } },
+}
+
+const container = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { staggerChildren: 0.12 } },
+}
 
 export function AboutSection() {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.1,
-        ease: [0.25, 0.1, 0.25, 1.0],
-      },
-    },
-  }
-
-  const titleVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: [0.25, 0.1, 0.25, 1.0],
-      },
-    },
-  }
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.8,
-        ease: [0.25, 0.1, 0.25, 1.0],
-      },
-    },
-  }
-
   return (
     <section id="about" className="section-spacing">
       <div className="container-xl">
-        <motion.h2
-          variants={titleVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          className="section-title mb-24"
-        >
-          About Me
-        </motion.h2>
-
         <motion.div
-          variants={containerVariants}
+          variants={container}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-1 lg:grid-cols-2 gap-16"
+          viewport={{ once: true, margin: "-15%" }}
         >
-          <motion.div variants={itemVariants} className="space-y-8">
-            <div>
-              <p className="body-text text-foreground-secondary leading-relaxed">
-                I'm a passionate university student at ENSAM Meknès, deeply engaged in software development, embedded
-                systems, AI, and digital innovation. My journey combines academic excellence with hands-on experience in
-                industrial automation and cutting-edge technology.
-              </p>
+          <motion.h2 variants={item} className="section-title mb-16">
+            About
+          </motion.h2>
+
+          <motion.p variants={item} className="hero-subtitle mb-16 max-w-4xl text-foreground">
+            {about.lead}
+          </motion.p>
+
+          <div className="grid grid-cols-1 gap-16 lg:grid-cols-[1.6fr_1fr]">
+            <div className="space-y-7">
+              {about.paragraphs.map((text) => (
+                <motion.p key={text.slice(0, 40)} variants={item} className="body-text text-foreground-secondary">
+                  {text}
+                </motion.p>
+              ))}
             </div>
 
-            <div>
-              <p className="body-text text-foreground-secondary leading-relaxed">
-                Through my internship at Lear Corp, I gained valuable experience with SMT production lines, AOI systems,
-                and quality assurance processes, where I developed AI solutions for automated defect detection in PCB
-                manufacturing.
-              </p>
-            </div>
+            <motion.div variants={item}>
+              <dl className="mb-12 space-y-0">
+                {about.facts.map((fact) => (
+                  <div key={fact.label} className="flex justify-between gap-6 border-b border-border py-4">
+                    <dt className="mono text-xs uppercase tracking-widest text-foreground-tertiary">{fact.label}</dt>
+                    <dd className="meta-text text-right text-foreground-secondary">{fact.value}</dd>
+                  </div>
+                ))}
+              </dl>
 
-            <div className="bg-foreground/5 rounded-lg p-6 border border-foreground/10">
-              <h3 className="nav-text text-foreground/90 mb-4 font-semibold">Experience Highlights</h3>
-              <div className="space-y-3">
-                <div className="flex items-center gap-3">
-                  <Building className="h-5 w-5 text-foreground-secondary" />
-                  <span className="body-text text-foreground-secondary">Internship at Lear Corp</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <Calendar className="h-5 w-5 text-foreground-secondary" />
-                  <span className="body-text text-foreground-secondary">SMT Production & AOI Systems</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <MapPin className="h-5 w-5 text-foreground-secondary" />
-                  <span className="body-text text-foreground-secondary">Quality Assurance & Process Optimization</span>
-                </div>
+              <div className="border-l border-tn-magenta/40 pl-6">
+                <h3 className="mono mb-4 text-xs uppercase tracking-[0.15em] text-tn-magenta">{about.quiet.title}</h3>
+                <p className="project-description mb-4 text-foreground-secondary">{about.quiet.body}</p>
+                <p className="project-description text-foreground-tertiary">{about.quiet.close}</p>
               </div>
-            </div>
-          </motion.div>
-
-          <motion.div variants={itemVariants} className="space-y-8">
-            <div>
-              <p className="body-text text-foreground-secondary leading-relaxed">
-                My expertise spans from low-level embedded systems programming to high-level AI applications, with a
-                particular focus on industrial automation and quality control systems. I enjoy tackling complex
-                technical challenges and creating innovative solutions.
-              </p>
-            </div>
-
-            <div>
-              <p className="body-text text-foreground-secondary leading-relaxed">
-                Beyond technical work, I'm passionate about documentation and knowledge sharing. I create professional
-                LaTeX templates, maintain organized productivity systems in Obsidian, and contribute to educational
-                materials for fellow students.
-              </p>
-            </div>
-
-            <div className="bg-foreground/5 rounded-lg p-6 border border-foreground/10">
-              <h3 className="nav-text text-foreground/90 mb-4 font-semibold">Current Focus</h3>
-              <div className="space-y-2">
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                  <span className="body-text text-foreground-secondary">AI/ML in Industrial Applications</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                  <span className="body-text text-foreground-secondary">Embedded Systems Development</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                  <span className="body-text text-foreground-secondary">Network Security & Infrastructure</span>
-                </div>
-              </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
         </motion.div>
       </div>
     </section>

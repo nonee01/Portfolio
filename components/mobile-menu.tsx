@@ -1,112 +1,56 @@
 "use client"
 
-import { motion, AnimatePresence } from "framer-motion"
+import { AnimatePresence, motion } from "framer-motion"
 import { X } from "lucide-react"
-import { useScrollContext } from "./smooth-scroll-provider"
-import { createPortal } from "react-dom"
-import { useEffect, useState } from "react"
+import { site } from "@/lib/content"
+import { navItems } from "./navbar"
 
-interface MobileMenuProps {
-  isOpen: boolean
-  onClose: () => void
-}
-
-export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
-  const { currentSection } = useScrollContext()
-  const [mounted, setMounted] = useState(false)
-
-  const handleNavClick = (href: string) => {
-    onClose()
-    setTimeout(() => {
-      const element = document.querySelector(href)
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" })
-      }
-    }, 300)
-  }
-
-  const navItems = [
-    { name: "Projects", href: "#projects", id: "projects" },
-    { name: "Skills", href: "#skills", id: "skills" },
-    { name: "About", href: "#about", id: "about" },
-    { name: "Goals", href: "#goals", id: "goals" },
-    { name: "Contact", href: "#contact", id: "contact" },
-  ]
-
-  useEffect(() => {
-    setMounted(true)
-    return () => setMounted(false)
-  }, [])
-
-  if (!mounted) return null
-
-  return createPortal(
+export function MobileMenu({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
+  return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-[9999] isolate">
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="fixed inset-0 bg-[#1a1a1c]/95 backdrop-blur-md"
-            onClick={onClose}
-            style={{ zIndex: 1 }}
-          />
-
-          <motion.div
-            initial={{ translateX: "100%" }}
-            animate={{ translateX: 0 }}
-            exit={{ translateX: "100%" }}
-            transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1.0] }}
-            className="fixed top-0 right-0 bottom-0 w-full max-w-xs bg-[#1a1a1c] shadow-xl flex flex-col h-full"
-            style={{ zIndex: 2, willChange: "transform" }}
-          >
-            <div className="flex justify-between items-center p-6 border-b border-foreground/10">
-              <span className="nav-text">Menu</span>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.3 }}
+          className="fixed inset-0 z-[60] bg-tn-bg md:hidden"
+        >
+          <div className="container-xl flex h-full flex-col py-6">
+            <div className="flex items-center justify-between">
+              <span className="mono text-sm tracking-widest text-foreground">{site.initials}</span>
               <button
+                type="button"
                 onClick={onClose}
-                className="text-foreground-secondary hover:text-foreground transition-colors"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-border text-foreground"
                 aria-label="Close menu"
               >
-                <X className="h-5 w-5" />
+                <X className="h-4 w-4" />
               </button>
             </div>
 
-            <div className="flex-1 overflow-y-auto py-8">
-              <nav className="flex flex-col space-y-8 px-6">
-                {navItems.map((item) => (
-                  <a
-                    key={item.name}
-                    href={item.href}
-                    className={`mobile-nav-text ${
-                      currentSection === item.id ? "text-foreground" : "text-foreground-secondary hover:text-foreground"
-                    } transition-colors duration-300 relative pl-4`}
-                    onClick={(e) => {
-                      e.preventDefault()
-                      handleNavClick(item.href)
-                    }}
-                  >
-                    {currentSection === item.id && (
-                      <motion.span
-                        layoutId="activeMenuIndicator"
-                        className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-foreground rounded-full"
-                        transition={{ duration: 0.3 }}
-                      />
-                    )}
-                    {item.name}
-                  </a>
-                ))}
-              </nav>
-            </div>
+            <nav className="flex flex-1 flex-col justify-center gap-8">
+              {navItems.map((item, i) => (
+                <motion.a
+                  key={item.id}
+                  href={`#${item.id}`}
+                  onClick={onClose}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.1 + i * 0.07, duration: 0.4 }}
+                  className="text-3xl font-medium text-foreground"
+                >
+                  {item.name}
+                </motion.a>
+              ))}
+            </nav>
 
-            <div className="border-t border-foreground/10 p-6">
-              <p className="meta-text text-foreground-secondary">&copy; {new Date().getFullYear()} Yassine El Aidous</p>
-            </div>
-          </motion.div>
-        </div>
+            <a href={`mailto:${site.email}`} className="meta-text text-foreground-tertiary">
+              {site.email}
+            </a>
+          </div>
+        </motion.div>
       )}
-    </AnimatePresence>,
-    document.body,
+    </AnimatePresence>
   )
 }

@@ -1,28 +1,29 @@
-import Script from "next/script"
+import { site } from "@/lib/content"
 
 export function JsonLd() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Person",
-    name: "Damilare Osofisan",
-    url: "https://damilareoo.xyz",
-    image: "https://damilareoo.xyz/api/og-image",
-    jobTitle: "Designer & Developer",
-    description: "Portfolio of Damilare Osofisan, a designer and developer creating digital experiences.",
-    sameAs: [
-      "https://linkedin.com/in/damilareoo",
-      "https://github.com/damilareoo",
-      "https://dribbble.com/damilareoo",
-      "https://layers.to/damilareoo",
-      "https://pinterest.com/damilareoo",
-      "https://contra.com/damilareoo",
-      "https://cosmos.so/damilareoo",
-    ],
+    name: site.name,
+    url: site.url,
+    jobTitle: site.role,
+    description: site.description,
+    alumniOf: {
+      "@type": "CollegeOrUniversity",
+      name: "ENSAM Meknès",
+    },
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Meknès",
+      addressCountry: "MA",
+    },
+    sameAs: [site.github, site.linkedin],
   }
 
   return (
-    <Script id="json-ld" type="application/ld+json" strategy="afterInteractive">
-      {JSON.stringify(jsonLd)}
-    </Script>
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+    />
   )
 }
