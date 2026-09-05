@@ -64,7 +64,7 @@ export const projects: Project[] = [
     title: "Estate monitoring",
     kind: "COD Partner · monitoring",
     blurb:
-      "An estate of 300 services throws off roughly 20 events a second. A team will read maybe ten messages a day before it starts ignoring the channel. Squeezing the first number down to the second is the job, and most of the code exists to do it. Ownership resolves from the machine's own Linux groups, so an alert that can name nobody fails the deploy instead of warning.",
+      "An estate of 300 services throws off roughly 20 events a second. A team reads maybe ten messages a day before it starts ignoring the channel, and squeezing the first number down to the second is the whole job. Ownership resolves from the machine's own Linux groups.",
     stack: ["Java (JDK only)", "systemd", "Prometheus", "Grafana", "Loki", "PostgreSQL wire protocol"],
     status: "private",
   },
@@ -82,7 +82,7 @@ export const projects: Project[] = [
     title: "schoolapp_watcher",
     kind: "School tooling",
     blurb:
-      "Offline CLI for the ENSAM results portal. Local store, watch mode with snapshot diffing, the evaluation règlement implemented from the official text, CSV export, an HTTP API, plus Android and KDE clients over one store.",
+      "Offline CLI for the ENSAM results portal. Local store, watch mode with snapshot diffing, and the evaluation règlement implemented from the official text. One store behind a CLI, an HTTP API, Android and KDE clients.",
     stack: ["Python", "SQLite", "Android", "KDE Plasma"],
     repo: "https://github.com/TheSilent01/schoolapp_watcher",
   },

@@ -1,6 +1,6 @@
 "use client"
 
-import { Coffee } from "lucide-react"
+import { Coffee, Github, Linkedin } from "lucide-react"
 import { site } from "@/lib/content"
 
 export function Footer() {
@@ -10,15 +10,35 @@ export function Footer() {
         <p className="meta-text text-foreground-tertiary">
           © {new Date().getFullYear()} {site.name}
         </p>
-        <a
-          href={site.coffee}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="meta-text group inline-flex items-center gap-2 text-foreground-tertiary transition-colors duration-300 hover:text-foreground"
-        >
-          <Coffee className="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5" />
-          Buy me a coffee
-        </a>
+        <div className="flex items-center gap-7">
+          <a
+            href={site.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="meta-text inline-flex items-center gap-2 text-foreground-tertiary transition-colors duration-300 hover:text-tn-blue"
+          >
+            <Linkedin className="h-4 w-4" />
+            LinkedIn
+          </a>
+          <a
+            href={site.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="meta-text inline-flex items-center gap-2 text-foreground-tertiary transition-colors duration-300 hover:text-tn-blue"
+          >
+            <Github className="h-4 w-4" />
+            GitHub
+          </a>
+          <a
+            href={site.coffee}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="meta-text group inline-flex items-center gap-2 text-foreground-tertiary transition-colors duration-300 hover:text-tn-blue"
+          >
+            <Coffee className="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5" />
+            Buy me a coffee
+          </a>
+        </div>
       </div>
     </footer>
   )

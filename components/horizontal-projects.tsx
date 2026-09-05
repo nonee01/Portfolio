@@ -13,17 +13,17 @@ function ProjectPanel({ project, index }: { project: Project; index: number }) {
         <span className="mono text-xs uppercase tracking-[0.15em] text-foreground-tertiary">{project.kind}</span>
       </div>
 
-      <h3 className="project-title mt-7 text-foreground transition-colors duration-300 group-hover:text-tn-blue">
+      <h3 className="project-title mt-6 text-foreground transition-colors duration-300 group-hover:text-tn-blue">
         {project.title}
       </h3>
 
-      <p className="project-description mt-5 text-foreground-secondary">{project.blurb}</p>
+      <p className="project-description mt-4 text-foreground-secondary">{project.blurb}</p>
 
-      <p className="mono mt-auto pt-8 text-xs leading-relaxed text-foreground-tertiary">
+      <p className="mono mt-auto pt-6 text-xs leading-relaxed text-foreground-tertiary">
         {project.stack.join("  ·  ")}
       </p>
 
-      <span className="mono mt-5 inline-flex items-center gap-1.5 text-xs uppercase tracking-[0.15em]">
+      <span className="mono mt-4 inline-flex items-center gap-1.5 text-xs uppercase tracking-[0.15em]">
         {project.repo ? (
           <span className="border-b border-tn-blue/40 pb-0.5 text-tn-blue transition-colors duration-300 group-hover:border-tn-blue">
             Source
@@ -39,7 +39,7 @@ function ProjectPanel({ project, index }: { project: Project; index: number }) {
   )
 
   const className =
-    "group flex h-full w-[78vw] shrink-0 flex-col border-l border-border pl-8 pr-10 sm:w-[54vw] md:w-[40vw] lg:w-[30vw] xl:w-[25vw]"
+    "group flex h-full w-[78vw] shrink-0 flex-col overflow-hidden border-l border-border pl-8 pr-10 sm:w-[54vw] md:w-[40vw] lg:w-[30vw] xl:w-[25vw]"
 
   return project.repo ? (
     <a href={project.repo} target="_blank" rel="noopener noreferrer" className={className}>
@@ -62,7 +62,8 @@ export function HorizontalProjects() {
     const track = trackRef.current
     if (!track) return
 
-    const measure = () => setDistance(Math.max(0, track.scrollWidth - window.innerWidth))
+    const measure = () =>
+      setDistance(Math.max(0, track.scrollWidth - document.documentElement.clientWidth))
 
     measure()
     const observer = new ResizeObserver(measure)
@@ -101,8 +102,8 @@ export function HorizontalProjects() {
     // Scroll length is the viewport plus however far the track has to travel,
     // which keeps the horizontal speed roughly constant across screen sizes.
     <section id="projects" ref={sectionRef} style={{ height: `calc(100vh + ${distance}px)` }}>
-      <div className="sticky top-0 flex h-screen flex-col justify-center gap-10 overflow-hidden pb-12 pt-28">
-        <div className="container-xl flex items-baseline justify-between">
+      <div className="sticky top-0 flex h-screen flex-col gap-6 overflow-hidden pb-8 pt-24">
+        <div className="container-xl flex shrink-0 items-baseline justify-between">
           <h2 className="section-title">Selected work</h2>
           <span className="mono hidden text-xs text-foreground-tertiary sm:block">{projects.length} entries</span>
         </div>
@@ -110,14 +111,14 @@ export function HorizontalProjects() {
         <motion.div
           ref={trackRef}
           style={{ x: smoothX }}
-          className="flex h-[clamp(20rem,52vh,28rem)] pl-6 pr-6 md:pl-16 xl:pl-32"
+          className="flex min-h-0 flex-1 pl-6 pr-6 md:pl-16 xl:pl-32"
         >
           {projects.map((project, i) => (
             <ProjectPanel key={project.id} project={project} index={i} />
           ))}
         </motion.div>
 
-        <div className="container-xl">
+        <div className="container-xl shrink-0">
           <div className="h-px w-full bg-tn-gutter/60">
             <motion.div className="h-px origin-left bg-tn-blue" style={{ scaleX: progress }} />
           </div>

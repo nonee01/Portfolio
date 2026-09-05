@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 import { AnimatePresence, motion, useReducedMotion, useScroll, useTransform } from "framer-motion"
-import { GraduationCap, MapPin } from "lucide-react"
+import { Github, GraduationCap, Linkedin, MapPin } from "lucide-react"
 import { site, taglines } from "@/lib/content"
 
 const ease = [0.25, 0.1, 0.25, 1] as const
@@ -81,6 +81,27 @@ export function HeroSection() {
               <GraduationCap className="h-4 w-4" />
               <span className="nav-text">{site.school}</span>
             </span>
+          </motion.div>
+
+          <motion.div variants={item} className="mt-10 flex items-center gap-8">
+            <a
+              href={site.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="nav-text group inline-flex items-center gap-2 text-foreground-secondary transition-colors duration-300 hover:text-tn-blue"
+            >
+              <Linkedin className="h-4 w-4" />
+              LinkedIn
+            </a>
+            <a
+              href={site.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="nav-text group inline-flex items-center gap-2 text-foreground-secondary transition-colors duration-300 hover:text-tn-blue"
+            >
+              <Github className="h-4 w-4" />
+              GitHub
+            </a>
           </motion.div>
         </motion.div>
       </motion.div>
