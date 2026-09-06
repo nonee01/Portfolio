@@ -34,7 +34,7 @@ export default function OpengraphImage() {
 
         <div style={{ display: "flex", justifyContent: "space-between", color: "#565f89", fontSize: 24 }}>
           <span>{site.school}</span>
-          <span>github.com/TheSilent01</span>
+          <span>github.com/{site.githubHandle}</span>
         </div>
       </div>
     ),

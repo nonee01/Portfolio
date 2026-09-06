@@ -9,7 +9,8 @@ export const site = {
   location: "Meknès, Morocco",
   url: "https://yassine-elaidous.vercel.app",
   email: "y.elaidous@edu.umi.ac.ma",
-  github: "https://github.com/TheSilent01",
+  githubHandle: "nonee01",
+  github: "https://github.com/nonee01",
   linkedin: "https://www.linkedin.com/in/yassine-el-aidous/",
   coffee: "https://coff.ee/elaidousyaz",
   // Drop a PDF at public/cv.pdf and this button goes live.
@@ -84,7 +85,7 @@ export const projects: Project[] = [
     blurb:
       "Offline CLI for the ENSAM results portal. Local store, watch mode with snapshot diffing, and the evaluation règlement implemented from the official text. One store behind a CLI, an HTTP API, Android and KDE clients.",
     stack: ["Python", "SQLite", "Android", "KDE Plasma"],
-    repo: "https://github.com/TheSilent01/schoolapp_watcher",
+    repo: "https://github.com/nonee01/schoolapp_watcher",
   },
   {
     id: "ict-defect-dashboard",
@@ -93,7 +94,7 @@ export const projects: Project[] = [
     blurb:
       "Dashboard for in-circuit-test defects on an SMT line. Per-component failure rate and reliability, an SPC control chart, heatmaps, and a resolution workflow with live updates.",
     stack: ["TypeScript", "Next.js", "SPC", "Charting"],
-    repo: "https://github.com/TheSilent01/ict-defect-dashboard",
+    repo: "https://github.com/nonee01/ict-defect-dashboard",
   },
   {
     id: "practice-platforms",
@@ -102,7 +103,7 @@ export const projects: Project[] = [
     blurb:
       "Three of them, for Java, Rust and Git. Problem banks, hidden test suites, sandboxed repositories, and progress that survives syncing between two machines.",
     stack: ["Java", "Rust", "Python", "PostgreSQL", "Git plumbing"],
-    repo: "https://github.com/TheSilent01/jp",
+    status: "private",
   },
   {
     id: "lifeos",
@@ -111,7 +112,7 @@ export const projects: Project[] = [
     blurb:
       "Journal, notes, habit and health tracking, daily reports. State kept as text so two laptops can merge it by union instead of conflicting.",
     stack: ["Python", "Text-as-database", "Syncthing"],
-    repo: "https://github.com/TheSilent01/lifeos-system",
+    status: "private",
   },
   {
     id: "calendar-organizer",
@@ -120,7 +121,7 @@ export const projects: Project[] = [
     blurb:
       "Organises a course calendar into Google Calendar: colour assignment, validation with row numbers, statistics and splitting.",
     stack: ["Python", "Google Calendar API"],
-    repo: "https://github.com/TheSilent01/calendar-organizer",
+    repo: "https://github.com/nonee01/calendar-organizer",
   },
   {
     id: "cpp-dungeon",
@@ -128,7 +129,7 @@ export const projects: Project[] = [
     kind: "Teaching tools",
     blurb: "A terminal game in C++ that teaches eleven language features, one per room, in French.",
     stack: ["C++", "Terminal UI"],
-    repo: "https://github.com/TheSilent01/cpp-dungeon",
+    repo: "https://github.com/nonee01/cpp-dungeon",
   },
 ]
 

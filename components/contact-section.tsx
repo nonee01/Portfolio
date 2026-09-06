@@ -8,7 +8,7 @@ import { site } from "@/lib/content"
 const ease = [0.25, 0.1, 0.25, 1] as const
 
 const links = [
-  { label: "GitHub", value: "TheSilent01", href: site.github, Icon: Github },
+  { label: "GitHub", value: site.githubHandle, href: site.github, Icon: Github },
   { label: "LinkedIn", value: "Yassine El Aidous", href: site.linkedin, Icon: Linkedin },
 ]
 
