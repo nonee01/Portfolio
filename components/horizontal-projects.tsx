@@ -9,7 +9,7 @@ function ProjectPanel({ project, index }: { project: Project; index: number }) {
   const body = (
     <>
       <div className="flex items-baseline gap-5">
-        <span className="mono text-xs text-tn-blue">{String(index + 1).padStart(2, "0")}</span>
+        <span className="mono text-xs text-ctp-mauve">{String(index + 1).padStart(2, "0")}</span>
         <span className="mono text-xs uppercase tracking-[0.15em] text-foreground-tertiary">{project.kind}</span>
       </div>
 
@@ -120,7 +120,10 @@ export function HorizontalProjects() {
 
         <div className="container-xl shrink-0">
           <div className="h-px w-full bg-tn-gutter/60">
-            <motion.div className="h-px origin-left bg-tn-blue" style={{ scaleX: progress }} />
+            <motion.div
+              className="h-px origin-left bg-gradient-to-r from-tn-blue to-ctp-mauve"
+              style={{ scaleX: progress }}
+            />
           </div>
         </div>
       </div>

@@ -32,6 +32,9 @@ const config: Config = {
           teal: "#73daca",
           red: "#f7768e",
         },
+        ctp: {
+          mauve: "#cba6f7",
+        },
       },
       fontFamily: {
         sans: ["var(--font-geist-sans)", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "system-ui", "sans-serif"],

@@ -22,11 +22,17 @@
   --tn-teal: #73daca;
   --tn-red: #f7768e;
 
+  /* Catppuccin Mocha mauve. The one colour from outside Tokyo Night, and it
+     has a single job: position. Progress bars, counters, the aside that runs
+     alongside the main text. Blue stays the accent for identity and links. */
+  --ctp-mauve: #cba6f7;
+
   --background: var(--tn-bg);
   --foreground: var(--tn-fg);
   --foreground-secondary: var(--tn-fg-dark);
   --foreground-tertiary: var(--tn-comment);
   --accent: var(--tn-blue);
+  --accent-position: var(--ctp-mauve);
   --border: rgba(122, 162, 247, 0.14);
   --transition-bezier: cubic-bezier(0.25, 0.1, 0.25, 1);
 }

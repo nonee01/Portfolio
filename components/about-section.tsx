@@ -52,8 +52,8 @@ export function AboutSection() {
                 ))}
               </dl>
 
-              <div className="border-l border-tn-magenta/40 pl-6">
-                <h3 className="mono mb-4 text-xs uppercase tracking-[0.15em] text-tn-magenta">{about.quiet.title}</h3>
+              <div className="border-l border-ctp-mauve/40 pl-6">
+                <h3 className="mono mb-4 text-xs uppercase tracking-[0.15em] text-ctp-mauve">{about.quiet.title}</h3>
                 <p className="project-description mb-4 text-foreground-secondary">{about.quiet.body}</p>
                 <p className="project-description text-foreground-tertiary">{about.quiet.close}</p>
               </div>
