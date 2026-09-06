@@ -7,7 +7,7 @@ export const site = {
   role: "Software engineering student",
   school: "ENSAM Meknès",
   location: "Meknès, Morocco",
-  url: "https://yassine-portfolio.vercel.app",
+  url: "https://yassine-elaidous.vercel.app",
   email: "y.elaidous@edu.umi.ac.ma",
   github: "https://github.com/TheSilent01",
   linkedin: "https://www.linkedin.com/in/yassine-el-aidous/",
