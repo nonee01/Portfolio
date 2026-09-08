@@ -57,6 +57,9 @@ export type Project = {
   repo?: string
   // Private work has no link. The entry says so instead of pretending.
   status?: "private" | "production"
+  // A short muted loop, for the projects where seeing it run says more than
+  // the blurb does. Poster is shown instead when the visitor asked for less motion.
+  video?: { src: string; poster: string; alt: string }
 }
 
 export const projects: Project[] = [
@@ -139,6 +142,11 @@ export const projects: Project[] = [
       "A free-return lunar flyby in two dimensions. The trajectory is the easy half: the interesting stretch is the one where the Moon sits between the spacecraft and the only antenna that can hear it, so occultation is decided by point-to-line geometry rather than by eye. The model is held against real AROW telemetry and JPL Horizons ephemerides.",
     stack: ["Python", "Matplotlib", "JPL Horizons", "Streamlit"],
     repo: "https://github.com/nonee01/arthemis",
+    video: {
+      src: "/arthemis-flyby.mp4",
+      poster: "/arthemis-flyby.jpg",
+      alt: "Ten days of the free-return trajectory: out from Earth, around the far side of the Moon, and back, with the link dropping while the Moon is across the sight line.",
+    },
   },
 ]
 

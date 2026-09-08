@@ -6,6 +6,8 @@ import { ArrowUpRight } from "lucide-react"
 import { projects, type Project } from "@/lib/content"
 
 function ProjectPanel({ project, index }: { project: Project; index: number }) {
+  const reduceMotion = useReducedMotion()
+
   const body = (
     <>
       <div className="flex items-baseline gap-5">
@@ -18,6 +20,27 @@ function ProjectPanel({ project, index }: { project: Project; index: number }) {
       </h3>
 
       <p className="project-description mt-4 text-foreground-secondary">{project.blurb}</p>
+
+      {project.video && (
+        <figure className="mt-6 overflow-hidden border border-border">
+          {reduceMotion ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img src={project.video.poster} alt={project.video.alt} className="block w-full" />
+          ) : (
+            <video
+              src={project.video.src}
+              poster={project.video.poster}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              aria-label={project.video.alt}
+              className="block w-full"
+            />
+          )}
+        </figure>
+      )}
 
       <p className="mono mt-auto pt-6 text-xs leading-relaxed text-foreground-tertiary">
         {project.stack.join("  ·  ")}
