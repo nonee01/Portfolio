@@ -131,6 +131,15 @@ export const projects: Project[] = [
     stack: ["C++", "Terminal UI"],
     repo: "https://github.com/nonee01/cpp-dungeon",
   },
+  {
+    id: "arthemis",
+    title: "arthemis",
+    kind: "Simulation",
+    blurb:
+      "A free-return lunar flyby in two dimensions. The trajectory is the easy half: the interesting stretch is the one where the Moon sits between the spacecraft and the only antenna that can hear it, so occultation is decided by point-to-line geometry rather than by eye. The model is held against real AROW telemetry and JPL Horizons ephemerides.",
+    stack: ["Python", "Matplotlib", "JPL Horizons", "Streamlit"],
+    repo: "https://github.com/nonee01/arthemis",
+  },
 ]
 
 export const skills = [
